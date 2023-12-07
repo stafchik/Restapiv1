@@ -10,12 +10,12 @@ public class SpringSecurityApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringSecurityApplication.class, args);
 
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String password = "admin";
-		String encodedPassword = passwordEncoder.encode(password);
-		System.out.println();
-		System.out.println("Password is         : " + password);
-		System.out.println("Encoded Password is : " + encodedPassword);
+//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//		String password = "admin";
+//		String encodedPassword = passwordEncoder.encode(password);
+//		System.out.println();
+//		System.out.println("Password is         : " + password);
+//		System.out.println("Encoded Password is : " + encodedPassword);
 	}
 
 }

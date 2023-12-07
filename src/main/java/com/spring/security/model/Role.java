@@ -1,5 +1,6 @@
 package com.spring.security.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -25,17 +26,17 @@ public class Role implements GrantedAuthority {
     @Column(name = "role_name")
     private String roleName;
 
-    @Transient
-    private boolean active;
-
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
     private Set<User> userSet = new HashSet<>();
 
     @Override
     public String getAuthority() {
-        return this.roleName;
+        return roleName;
     }
-
+    public String getRoleName() {
+        return roleName.replaceAll("ROLE_","");
+    }
     @Override
     public String toString() {
         if (roleName.equals("ROLE_ADMIN")) {

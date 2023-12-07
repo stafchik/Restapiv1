@@ -1,5 +1,6 @@
 package com.spring.security.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -25,6 +26,11 @@ public class User implements UserDetails {
     @Column(name = "user_id")
     private Long userId;
 
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "last_name")
     private String lastName;
@@ -32,25 +38,19 @@ public class User implements UserDetails {
     @Column(name = "age")
     private int age;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "username")
-    private String username;
-
     @Column(name = "email")
     private String email;
 
     @Column(name = "password")
     private String password;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
